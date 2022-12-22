@@ -18,17 +18,12 @@ To get a glimpse of the possibilities of Open edX, we recommend you import the `
 Making Open edX look better
 ---------------------------
 
-Tutor makes it easy to :ref:`install <theming>` and :ref:`develop <theme_development>` your own themes. We also provide `Indigo <https://github.com/overhangio/indigo>`__: a free, customizable theme that you can install today.
+Tutor makes it easy to :ref:`install <theming>` your own themes. We also provide `Indigo <https://github.com/overhangio/indigo>`__: a free, customizable theme that you can install today.
 
 Adding features
 ---------------
 
 Check out the Tutor :ref:`plugins <plugins>` and :ref:`configuration/customization options <configuration_customisation>`.
-
-Hacking into Open edX
----------------------
-
-Tutor works great as a development environment for Open edX developers, both for debugging and developing new features. Please check out the :ref:`development documentation <development>`.
 
 Deploying to Kubernetes
 -----------------------

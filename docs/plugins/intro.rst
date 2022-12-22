@@ -13,8 +13,6 @@ Tutor comes with a plugin system that allows anyone to customise the deployment 
     # 3) Reconfigure and restart the platform
     tutor local launch
 
-For simple changes, it may be extremely easy to create a Tutor plugin: even non-technical users may get started with our :ref:`plugin_development_tutorial` tutorial. We also provide a list of :ref:`simple example plugins <plugins_examples>`.
-
 Plugin commands cheatsheet
 ==========================
 

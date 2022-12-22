@@ -1,4 +1,4 @@
-.. _development:
+.. _openedx_development:
 
 Open edX development
 ====================

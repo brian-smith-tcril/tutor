@@ -29,6 +29,20 @@
    tutor
    faq
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer guide
+
+   developing/plugins/index
+   developing/openedx
+   developing/themes
+   configuration
+   plugins/index
+   reference/index
+   tutorials/index
+   troubleshooting
+   tutor
+   faq
 
 .. toctree::
    :maxdepth: 2
