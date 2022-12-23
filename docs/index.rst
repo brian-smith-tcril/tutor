@@ -39,7 +39,6 @@
    developing/themes
    developing/legacy/index
    reference/index
-   tutorials/index
 
 .. toctree::
    :maxdepth: 1
