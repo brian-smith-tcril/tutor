@@ -2,7 +2,7 @@ name: Deploy docs to pages
 
 on:
   push:
-    branches: [ "restructure-docs", "master" ]
+    branches: [ "restructure-docs" ]
 
 jobs:
   # Build job
@@ -22,8 +22,6 @@ jobs:
       - uses: actions/upload-pages-artifact@v1
         with:
           path: docs/_build/html
-    # <Not provided for brevity>
-    # At a minimum this job should upload artifacts using actions/upload-pages-artifact
 
   # Deploy job
   deploy:
