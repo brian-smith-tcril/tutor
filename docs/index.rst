@@ -26,22 +26,20 @@
    reference/index
    tutorials/index
    troubleshooting
-   tutor
    faq
 
 .. toctree::
    :maxdepth: 2
    :caption: Developer guide
 
+   tutor
    developing/plugins/index
    developing/openedx
    developing/themes
-   configuration
-   plugins/index
+   developing/legacy/index
    reference/index
    tutorials/index
    troubleshooting
-   tutor
    faq
 
 .. toctree::
