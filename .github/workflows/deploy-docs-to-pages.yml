@@ -19,10 +19,9 @@ jobs:
           pip install tutor
           cd docs
           make build
-#          touch blarg.txt
-#      - uses: actions/upload-pages-artifact@v1
-#        with:
-#          path: 
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: docs/_build/html
     # <Not provided for brevity>
     # At a minimum this job should upload artifacts using actions/upload-pages-artifact
 
