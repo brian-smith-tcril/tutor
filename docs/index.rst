@@ -15,8 +15,10 @@
 .. include:: quickstart.rst
     :start-line: 1
 
+
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: User guide
 
    gettingstarted
@@ -26,10 +28,9 @@
    reference/index
    tutorials/index
    troubleshooting
-   faq
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Developer guide
 
    tutor
@@ -39,8 +40,6 @@
    developing/legacy/index
    reference/index
    tutorials/index
-   troubleshooting
-   faq
 
 .. toctree::
    :maxdepth: 1
@@ -51,7 +50,13 @@
    reference/patches/index
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :caption: About
+
+   faq
+
+.. toctree::
+   :maxdepth: 1
    :caption: Project links
 
    Source code <https://github.com/overhangio/tutor>
