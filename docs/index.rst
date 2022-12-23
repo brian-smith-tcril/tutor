@@ -43,6 +43,14 @@
    faq
 
 .. toctree::
+   :maxdepth: 1
+   :caption: Reference
+
+   reference/cli/index
+   reference/api/hooks/index
+   reference/patches/index
+
+.. toctree::
    :maxdepth: 2
    :caption: Project links
 

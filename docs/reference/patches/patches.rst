@@ -1,7 +1,7 @@
 .. _patches:
 
 ================
-Template patches
+List of all template patches
 ================
 
 This is the list of all patches used across Tutor (outside of any plugin). Alternatively, you can search for patches in Tutor templates by grepping the source code::
