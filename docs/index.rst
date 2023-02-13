@@ -16,12 +16,19 @@
     :start-line: 1
 
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Concepts
 
+   concepts/tutor 
+   concepts/openedx
+   
 .. toctree::
    :maxdepth: 1
    :caption: User guide
 
    gettingstarted
+   install
    run
    configuration
    plugins/index
@@ -51,7 +58,8 @@
 .. toctree::
    :maxdepth: 1
    :caption: About
-
+   
+   howtutorworks 
    faq
 
 .. toctree::
