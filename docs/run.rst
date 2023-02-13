@@ -14,10 +14,3 @@ Importing a demo course
 -----------------------
 
 To get a glimpse of the possibilities of Open edX, we recommend you import the `official demo test course <https://github.com/openedx/edx-demo-course>`__. Tutor provides a :ref:`simple command for that <democourse>`.
-
-.. toctree::
-   :maxdepth: 2
-
-   local
-   k8s
-   dev

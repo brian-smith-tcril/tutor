@@ -29,6 +29,7 @@
 
    gettingstarted
    install
+   deployment
    run
    configuration
    plugins/index
