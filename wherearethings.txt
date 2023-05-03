@@ -1,5 +1,9 @@
-
-
+https://docs.tutor.overhang.io/dev.html#sharing-directories-with-containers -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#sharing-directories-with-containers
+https://docs.tutor.overhang.io/dev.html#common-tasks -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#common-tasks
+https://docs.tutor.overhang.io/dev.html#xblock-and-edx-platform-plugin-development -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#xblock-and-edx-platform-plugin-development
+https://docs.tutor.overhang.io/dev.html#running-edx-platform-unit-tests -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#running-edx-platform-unit-tests
+https://docs.tutor.overhang.io/tutorials/theming.html#developing-a-new-theme -> https://brian-smith-tcril.github.io/tutor/developing/themes.html
+https://docs.tutor.overhang.io/plugins/v0/index.html#legacy-v0-api -> https://brian-smith-tcril.github.io/tutor/developing/legacy/pluginsv0/index.html
 https://docs.tutor.overhang.io/reference/cli/index.html -> https://brian-smith-tcril.github.io/tutor/reference/cli/index.html
 https://docs.tutor.overhang.io/reference/api/hooks/catalog.html -> https://brian-smith-tcril.github.io/tutor/reference/api/hooks/catalog.html
 https://docs.tutor.overhang.io/reference/api/hooks/actions.html -> https://brian-smith-tcril.github.io/tutor/reference/api/hooks/actions.html
