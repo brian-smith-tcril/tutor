@@ -12,7 +12,7 @@ DOCKER_COMPOSE_VERSION: "3.7"
 DOCKER_REGISTRY: "docker.io/"
 DOCKER_IMAGE_OPENEDX: "{{ DOCKER_REGISTRY }}overhangio/openedx:{{ TUTOR_VERSION }}"
 DOCKER_IMAGE_OPENEDX_DEV: "openedx-dev:{{ TUTOR_VERSION }}"
-DOCKER_IMAGE_CADDY: "docker.io/caddy:2.4.6"
+DOCKER_IMAGE_CADDY: "docker.io/caddy:2.6.3"
 DOCKER_IMAGE_ELASTICSEARCH: "docker.io/elasticsearch:7.10.1"
 DOCKER_IMAGE_MONGODB: "docker.io/mongo:4.2.17"
 DOCKER_IMAGE_MYSQL: "docker.io/mysql:5.7.35"
@@ -51,7 +51,7 @@ OPENEDX_CMS_UWSGI_WORKERS: 2
 OPENEDX_LMS_UWSGI_WORKERS: 2
 OPENEDX_MYSQL_DATABASE: "openedx"
 OPENEDX_MYSQL_USERNAME: "openedx"
-OPENEDX_COMMON_VERSION: "open-release/olive.1"
+OPENEDX_COMMON_VERSION: "open-release/olive.3"
 OPENEDX_EXTRA_PIP_REQUIREMENTS:
   - "openedx-scorm-xblock>=15.0.0,<16.0.0"
 MYSQL_HOST: "mysql"

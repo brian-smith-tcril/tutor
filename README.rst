@@ -73,7 +73,6 @@ Documentation
 -------------
 
 Extensive documentation is available: https://docs.tutor.overhang.io/
-Extensive documentation is available: https://docs.tutor.overhang.io/
 
 Is there a problem?
 -------------------
@@ -97,3 +96,8 @@ Contributing
 We welcome contributions to Tutor! To learn how you can contribute, please check the relevant section of the Tutor docs: `https://docs.tutor.overhang.io/tutor.html#contributing <https://docs.tutor.overhang.io/tutor.html#contributing>`__.
 
 .. _readme_contributing_end:
+
+License
+-------
+
+This work is licensed under the terms of the `GNU Affero General Public License (AGPL) <https://github.com/overhangio/tutor/blob/master/LICENSE.txt>`_.
