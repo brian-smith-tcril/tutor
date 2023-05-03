@@ -1,3 +1,11 @@
+
+
+https://docs.tutor.overhang.io/reference/cli/index.html -> https://brian-smith-tcril.github.io/tutor/reference/cli/index.html
+https://docs.tutor.overhang.io/reference/api/hooks/catalog.html -> https://brian-smith-tcril.github.io/tutor/reference/api/hooks/catalog.html
+https://docs.tutor.overhang.io/reference/api/hooks/actions.html -> https://brian-smith-tcril.github.io/tutor/reference/api/hooks/actions.html
+https://docs.tutor.overhang.io/reference/api/hooks/filters.html -> https://brian-smith-tcril.github.io/tutor/reference/api/hooks/filters.html
+https://docs.tutor.overhang.io/reference/api/hooks/contexts.html -> https://brian-smith-tcril.github.io/tutor/reference/api/hooks/contexts.html
+https://docs.tutor.overhang.io/reference/patches.html -> https://brian-smith-tcril.github.io/tutor/reference/patches/index.html
 https://docs.tutor.overhang.io/intro.html#how-does-tutor-work -> https://brian-smith-tcril.github.io/tutor/howtutorworks.html
 https://docs.tutor.overhang.io/faq.html#what-is-tutor -> https://brian-smith-tcril.github.io/tutor/concepts/tutor.html#what-is-tutor
 https://docs.tutor.overhang.io/faq.html#what-is-the-purpose-of-tutor -> https://brian-smith-tcril.github.io/tutor/concepts/tutor.html#what-is-the-purpose-of-tutor
