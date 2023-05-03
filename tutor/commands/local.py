@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import typing as t
 
 import click
@@ -9,8 +11,8 @@ from tutor import interactive as interactive_config
 from tutor import utils
 from tutor.commands import compose
 from tutor.commands.config import save as config_save_command
-from tutor.commands.upgrade.local import upgrade_from
 from tutor.commands.upgrade import OPENEDX_RELEASE_NAMES
+from tutor.commands.upgrade.local import upgrade_from
 from tutor.types import Config, get_typed
 
 
@@ -70,7 +72,7 @@ def local(context: click.Context) -> None:
 @click.pass_context
 def launch(
     context: click.Context,
-    mounts: t.Tuple[t.List[compose.MountParam.MountType]],
+    mounts: tuple[list[compose.MountParam.MountType]],
     non_interactive: bool,
     pullimages: bool,
 ) -> None:
@@ -92,7 +94,7 @@ Tutor may not work if Docker is configured with < 4 GB RAM. Please follow instru
     if run_upgrade_from_release is not None:
         click.echo(fmt.title("Upgrading from an older release"))
         if not non_interactive:
-            to_release = tutor_env.get_package_release()
+            to_release = tutor_env.get_current_open_edx_release_name()
             question = f"""You are about to upgrade your Open edX platform from {run_upgrade_from_release.capitalize()} to {to_release.capitalize()}
 
 It is strongly recommended to make a backup before upgrading. To do so, run:

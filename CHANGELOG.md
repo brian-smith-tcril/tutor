@@ -20,6 +20,73 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-15.3.5'></a>
+## v15.3.5 (2023-04-28)
+
+- [Feature] Make it possible to import the demo course from a different git repository or version. (by @regisb)
+- [Feature] Add a convenient `do print-edx-platform-setting` command to print the value of an edx-platform setting. (by @regisb)
+- [Improvement] Improve edx-platform logging by silencing a couple deprecation warnings. (by @regisb)
+- [Feature] Add a convenient `do sqlshell` command to enter a SQL shell as root. (by @regisb)
+
+<a id='changelog-15.3.4'></a>
+## v15.3.4 (2023-04-13)
+
+- [Feature] Upgrade to open-release/olive.3. (by @regisb)
+
+<a id='changelog-15.3.3'></a>
+## v15.3.3 (2023-03-22)
+
+- [Improvement] Make it possible to extend or override the configuration of the uWSGI server. (by @MoisesGSalas)
+- [Improvement] Running `tutor dev launch --mount=edx-platform` now performs all necessary setup for a local edx-platform development. This includes running setup.py, installing node modules, and building assets; previously, those steps had to be run explicitly after bind-mounting a local copy of edx-platform (by @kdmccormick).
+- [Bugfix] Running jobs in development mode with `tutor dev do ...` will now correctly use the development image. Previously, it used the production image, just like `tutor local do ...`. (by @kdmccormick)
+- [Improvement] Faster build with `npm clean-install` instead of `npm install` in the openedx Docker image. This may change the version of npm packages installed next to edx-platform. (by @regisb)
+- [Feature] Introduce the `DOCKER_BUILD_COMMAND` filter which makes it possible to customize the `docker build` command. (by @regisb)
+- [Improvement] During openedx image build, copy `dockerize` utility from Docker registry for better efficiency. (by @regisb)
+- [Improvement] Better highlight enabled plugins in `tutor plugins list`. (by @regisb)
+
+- [Bugfix] Make sure that v0 plugin patches are applied in the same order as plugins are listed. (by @regisb)
+
+<a id='changelog-15.3.1'></a>
+## v15.3.2 (2023-03-13)
+
+- [Bugfix] Use supported YouTube API for transcripts imports. (by @mariajgrimaldi)
+- [Feature] Add `tutor config patches list` CLI for listing available patches. (by @mafermazu)
+- [Bugfix] Add the missing `UWSGI_WORKERS` env variables to the lms and cms k8s deployments. (by @MoisesGSalas)
+
+<a id='changelog-15.3.1'></a>
+## v15.3.1 (2023-02-28)
+
+- [Bugfix] `patchStrategicMerge` can now be applied to jobs. (by @keithgg)
+
+<a id='changelog-15.3.0'></a>
+## v15.3.0 (2023-02-10)
+
+- [Feature] Introduce plugin indexes, described in this [Tutor enhancement proposal](https://discuss.openedx.org/t/tutor-enhancement-proposal-tep-plugin-indices/8182). This new feature introduces a lot of new ``plugins`` commands. See the docs for more information. (by @regisb)
+- [Improvement] Add the `plugins list --enabled` option. (by @regisb)
+- 💥[Improvement] Modify the output of `plugins list`. Enabled plugins are indicated as "enabled". Installed but not enabled plugins are no longer indicated as "disabled" but as "installed".
+
+- 💥[Feature] Simplify the hooks API. The modules `tutor.hooks.actions`, `tutor.hooks.filters`, and `tutor.hooks.contexts` are no longer part of the API. This change should not affect most developers, who only use the `Actions` and `Filters` classes (notice the plural) from `tutor.hooks`. (by @regisb)
+    - Instead of `tutor.hooks.actions.get("some:action")`, use `tutor.hooks.Actions.SOME_ACTION`.
+    - Instead of `tutor.hooks.filters.get("some:filter")`, use `tutor.hooks.Filters.SOME_FILTER`.
+    - Instead of `tutor.hooks.actions.add("some:action")`, use `tutor.hooks.Actions.SOME_ACTION.add()`. The same applies to the `do` method.
+    - Instead of `tutor.hooks.filters.add("some:filter")`, use `tutor.hooks.Filters.SOME_FILTER.add()`. The same applies to the `add_item`, `add_items`, `apply`, and `iterate` methods.
+    - Instead of `tutor.hooks.contexts.enter`, use `tutor.core.hooks.contexts.enter`.
+
+- [Improvement] Make it possible to override the max upload size in the LMS and the CMS. This is achieved by moving the "caddyfile-lms" and "caddyfile-cms" patches just before the `import proxy` declarations. We also wrap the `request_body` directives within `handle` statements, which means that the `max_body` sizes can be overridden for specific paths. (by @regisb)
+
+- [Security] Fix grading issue in LTI consumer XBlock. See [security advisory](https://github.com/openedx/xblock-lti-consumer/security/advisories/GHSA-7j9p-67mm-5g87). (by @regisb)
+
+- [Feature] Upgrade all Open edX services to open-release/olive.2. (by @regisb)
+
+<a id='changelog-15.2.0'></a>
+## v15.2.0 (2023-01-19)
+
+- 💥[Bugfix] Fix "example.com" links in registration emails. This is a breaking change for platforms that have modified the "id" field of the LMS site object in the database. These platforms should set `SITE_ID=1` in the common settings via a plugin. (by @regisb)
+- [Bugfix] Running `tutor k8s upgrade --from=maple` won't apply and won't wait for the MySQL deployment to be ready if `RUN_MYSQL: false` (When you host your MySQL somewhere else like RDS) (by @CodeWithEmad)
+- [Bugfix] Fix HTML component editing in studio by cherry-picking [upstream fix](https://github.com/openedx/edx-platform/pull/31500). (by @regisb)
+- [Improvement] Changes annotations from `typing` to use built-in generic types from `__future__.annotations` (by @Carlos-Muniz)
+- [Improvement] Resolve `CORS_ORIGIN_WHITELIST` warnings that pollute the LMS and CMS logs. As far as we know they were not causing any issue, apart from being a nuisance. (by @regisb)
+
 <a id='changelog-15.1.0'></a>
 ## v15.1.0 (2022-12-13)
 

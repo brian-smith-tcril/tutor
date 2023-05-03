@@ -1,6 +1,8 @@
 """
 Common jobs that must be added both to local, dev and k8s commands.
 """
+from __future__ import annotations
+
 import functools
 import typing as t
 
@@ -8,7 +10,8 @@ import click
 from typing_extensions import ParamSpec
 
 from tutor import config as tutor_config
-from tutor import env, fmt, hooks
+from tutor import env, fmt, hooks, utils
+from tutor.hooks import priorities
 
 
 class DoGroup(click.Group):
@@ -39,6 +42,15 @@ def _add_core_init_tasks() -> None:
         )
     with hooks.Contexts.APP("lms").enter():
         hooks.Filters.CLI_DO_INIT_TASKS.add_item(
+            (
+                "lms",
+                env.read_core_template_file("jobs", "init", "mounted-edx-platform.sh"),
+            ),
+            # If edx-platform is mounted, then we may need to perform some setup
+            # before other initialization scripts can be run.
+            priority=priorities.HIGH,
+        )
+        hooks.Filters.CLI_DO_INIT_TASKS.add_item(
             ("lms", env.read_core_template_file("jobs", "init", "lms.sh"))
         )
     with hooks.Contexts.APP("cms").enter():
@@ -49,7 +61,7 @@ def _add_core_init_tasks() -> None:
 
 @click.command("init", help="Initialise all applications")
 @click.option("-l", "--limit", help="Limit initialisation to this service or plugin")
-def initialise(limit: t.Optional[str]) -> t.Iterator[t.Tuple[str, str]]:
+def initialise(limit: t.Optional[str]) -> t.Iterator[tuple[str, str]]:
     fmt.echo_info("Initialising all services...")
     filter_context = hooks.Contexts.APP(limit).name if limit else None
 
@@ -99,7 +111,7 @@ def createuser(
     password: str,
     name: str,
     email: str,
-) -> t.Iterable[t.Tuple[str, str]]:
+) -> t.Iterable[tuple[str, str]]:
     """
     Create an Open edX user
 
@@ -127,15 +139,50 @@ u.save()"
 
 
 @click.command(help="Import the demo course")
-def importdemocourse() -> t.Iterable[t.Tuple[str, str]]:
-    template = """
+@click.option(
+    "-r",
+    "--repo",
+    default="https://github.com/openedx/edx-demo-course",
+    show_default=True,
+    help="Git repository that contains the course to be imported",
+)
+@click.option(
+    "-v",
+    "--version",
+    help="Git branch, tag or sha1 identifier. If unspecified, will default to the value of the OPENEDX_COMMON_VERSION setting.",
+)
+def importdemocourse(
+    repo: str, version: t.Optional[str]
+) -> t.Iterable[tuple[str, str]]:
+    version = version or "{{ OPENEDX_COMMON_VERSION }}"
+    template = f"""
 # Import demo course
-git clone https://github.com/openedx/edx-demo-course --branch {{ OPENEDX_COMMON_VERSION }} --depth 1 ../edx-demo-course
-python ./manage.py cms import ../data ../edx-demo-course
+git clone {repo} --branch {version} --depth 1 /tmp/course
+python ./manage.py cms import ../data /tmp/course
 
 # Re-index courses
 ./manage.py cms reindex_course --all --setup"""
     yield ("cms", template)
+
+
+@click.command(
+    name="print-edx-platform-setting",
+    help="Print the value of an edx-platform Django setting.",
+)
+@click.argument("setting")
+@click.option(
+    "-s",
+    "--service",
+    type=click.Choice(["lms", "cms"]),
+    default="lms",
+    show_default=True,
+    help="Service to fetch the setting from",
+)
+def print_edx_platform_setting(
+    setting: str, service: str
+) -> t.Iterable[tuple[str, str]]:
+    command = f"./manage.py {service} shell -c 'from django.conf import settings; print(settings.{setting})'"
+    yield (service, command)
 
 
 @click.command()
@@ -150,7 +197,7 @@ python ./manage.py cms import ../data ../edx-demo-course
     ),
 )
 @click.argument("theme_name")
-def settheme(domains: t.List[str], theme_name: str) -> t.Iterable[t.Tuple[str, str]]:
+def settheme(domains: list[str], theme_name: str) -> t.Iterable[tuple[str, str]]:
     """
     Assign a theme to the LMS and the CMS.
 
@@ -159,7 +206,7 @@ def settheme(domains: t.List[str], theme_name: str) -> t.Iterable[t.Tuple[str, s
     yield ("lms", set_theme_template(theme_name, domains))
 
 
-def set_theme_template(theme_name: str, domain_names: t.List[str]) -> str:
+def set_theme_template(theme_name: str, domain_names: list[str]) -> str:
     """
     For each domain, get or create a Site object and assign the selected theme.
     """
@@ -193,6 +240,21 @@ def assign_theme(name, domain):
     for domain_name in domain_names:
         python_command += f"assign_theme('{theme_name}', '{domain_name}')\n"
     return f'./manage.py lms shell -c "{python_command}"'
+
+
+@click.command(context_settings={"ignore_unknown_options": True})
+@click.argument("args", nargs=-1)
+def sqlshell(args: list[str]) -> t.Iterable[tuple[str, str]]:
+    """
+    Open an SQL shell as root
+
+    Extra arguments will be passed to the `mysql` command verbatim. For instance, to
+    show tables from the "openedx" database, run `do sqlshell openedx -e 'show tables'`.
+    """
+    command = "mysql --user={{ MYSQL_ROOT_USERNAME }} --password={{ MYSQL_ROOT_PASSWORD }} --host={{ MYSQL_HOST }} --port={{ MYSQL_PORT }}"
+    if args:
+        command += " " + utils._shlex_join(*args)  # pylint: disable=protected-access
+    yield ("lms", command)
 
 
 def add_job_commands(do_command_group: click.Group) -> None:
@@ -231,7 +293,7 @@ P = ParamSpec("P")
 
 
 def _patch_callback(
-    job_name: str, func: t.Callable[P, t.Iterable[t.Tuple[str, str]]]
+    job_name: str, func: t.Callable[P, t.Iterable[tuple[str, str]]]
 ) -> t.Callable[P, None]:
     """
     Modify a subcommand callback function such that its results are processed by `do_callback`.
@@ -247,7 +309,7 @@ def _patch_callback(
     return new_callback
 
 
-def do_callback(service_commands: t.Iterable[t.Tuple[str, str]]) -> None:
+def do_callback(service_commands: t.Iterable[tuple[str, str]]) -> None:
     """
     This function must be added as a callback to all `do` subcommands.
 
@@ -273,6 +335,8 @@ hooks.Filters.CLI_DO_COMMANDS.add_items(
         createuser,
         importdemocourse,
         initialise,
+        print_edx_platform_setting,
         settheme,
+        sqlshell,
     ]
 )

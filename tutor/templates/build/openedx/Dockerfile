@@ -21,15 +21,6 @@ RUN git clone https://github.com/pyenv/pyenv $PYENV_ROOT --branch v2.2.2 --depth
 RUN $PYENV_ROOT/bin/pyenv install $PYTHON_VERSION
 RUN $PYENV_ROOT/versions/$PYTHON_VERSION/bin/python -m venv /openedx/venv
 
-###### Install Dockerize to wait for mysql DB availability
-FROM minimal as dockerize
-# https://github.com/powerman/dockerize/releases
-ARG DOCKERIZE_VERSION=v0.16.0
-RUN dockerize_url="https://github.com/powerman/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-$(uname -m | sed 's@aarch@arm@')" \
-    && echo "Downloading dockerize from $dockerize_url" \
-    && curl --fail --location --output /usr/local/bin/dockerize $dockerize_url \
-    && chmod a+x /usr/local/bin/dockerize
-
 ###### Checkout edx-platform code
 FROM minimal as code
 ARG EDX_PLATFORM_REPOSITORY={{ EDX_PLATFORM_REPOSITORY }}
@@ -115,14 +106,14 @@ ARG NPM_REGISTRY={{ NPM_REGISTRY }}
 COPY --from=code /openedx/edx-platform/package.json /openedx/edx-platform/package.json
 COPY --from=code /openedx/edx-platform/package-lock.json /openedx/edx-platform/package-lock.json
 WORKDIR /openedx/edx-platform
-RUN npm install --verbose --registry=$NPM_REGISTRY
+RUN npm clean-install --verbose --registry=$NPM_REGISTRY
 
 ###### Production image with system and python requirements
 FROM minimal as production
 
 # Install system requirements
 RUN apt update && \
-    apt install -y gettext gfortran graphviz graphviz-dev libffi-dev libfreetype6-dev libgeos-dev libjpeg8-dev liblapack-dev libmysqlclient-dev libpng-dev libsqlite3-dev libxmlsec1-dev lynx ntp pkg-config rdfind && \
+    apt install -y gettext gfortran graphviz graphviz-dev libffi-dev libfreetype6-dev libgeos-dev libjpeg8-dev liblapack-dev libmysqlclient-dev libpng-dev libsqlite3-dev libxmlsec1-dev lynx mysql-client ntp pkg-config rdfind && \
     rm -rf /var/lib/apt/lists/*
 
 # From then on, run as unprivileged "app" user
@@ -132,7 +123,8 @@ RUN if [ "$APP_USER_ID" = 0 ]; then echo "app user may not be root" && false; fi
 RUN useradd --home-dir /openedx --create-home --shell /bin/bash --uid ${APP_USER_ID} app
 USER ${APP_USER_ID}
 
-COPY --from=dockerize /usr/local/bin/dockerize /usr/local/bin/dockerize
+# https://hub.docker.com/r/powerman/dockerize/tags
+COPY --from=docker.io/powerman/dockerize:0.19.0 /usr/local/bin/dockerize /usr/local/bin/dockerize
 COPY --chown=app:app --from=code /openedx/edx-platform /openedx/edx-platform
 COPY --chown=app:app --from=locales /openedx/locale /openedx/locale
 COPY --chown=app:app --from=python /opt/pyenv /opt/pyenv
@@ -203,6 +195,13 @@ RUN openedx-assets themes \
 # Create a data directory, which might be used (or not)
 RUN mkdir /openedx/data
 
+# If this "canary" file is missing from a container, then that indicates that a
+# local edx-platform was bind-mounted into that container, thus overwriting the
+# canary. This information is useful during edx-platform initialisation.
+RUN echo \
+  "This copy of edx-platform was built into a Docker image." \
+  > bindmount-canary
+
 # service variant is "lms" or "cms"
 ENV SERVICE_VARIANT lms
 ENV DJANGO_SETTINGS_MODULE lms.envs.tutor.production
@@ -247,17 +246,14 @@ CMD ./manage.py $SERVICE_VARIANT runserver 0.0.0.0:8000
 ###### Final image with production cmd
 FROM production as final
 
+# Default amount of uWSGI processes
+ENV UWSGI_WORKERS=2
+
+# Copy the default uWSGI configuration
+COPY --chown=app:app settings/uwsgi.ini .
+
 # Run server
-CMD uwsgi \
-    --static-map /static=/openedx/staticfiles/ \
-    --static-map /media=/openedx/media/ \
-    --http 0.0.0.0:8000 \
-    --thunder-lock \
-    --single-interpreter \
-    --enable-threads \
-    --processes=${UWSGI_WORKERS:-2} \
-    --buffer-size=8192 \
-    --wsgi-file $SERVICE_VARIANT/wsgi.py
+CMD uwsgi uwsgi.ini
 
 {{ patch("openedx-dockerfile-final") }}
 

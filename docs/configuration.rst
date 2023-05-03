@@ -67,7 +67,7 @@ This configuration parameter defines the name of the Docker image to run for the
 
 This configuration paramater defines the name of the Docker image to run the development version of the lms and cms containers.  By default, the Docker image tag matches the Tutor version it was built with.
 
-- ``DOCKER_IMAGE_CADDY`` (default: ``"docker.io/caddy:2.4.6"``)
+- ``DOCKER_IMAGE_CADDY`` (default: ``"docker.io/caddy:2.6.2"``)
 
 This configuration paramater defines which Caddy Docker image to use.
 
@@ -130,7 +130,7 @@ Open edX customisation
 
 This defines the git repository from which you install Open edX platform code. If you run an Open edX fork with custom patches, set this to your own git repository. You may also override this configuration parameter at build time, by providing a ``--build-arg`` option.
 
-- ``OPENEDX_COMMON_VERSION`` (default: ``"open-release/olive.1"``)
+- ``OPENEDX_COMMON_VERSION`` (default: ``"open-release/olive.3"``)
 
 This defines the default version that will be pulled from all Open edX git repositories.
 
@@ -150,7 +150,7 @@ These two configuration parameters define which Redis database to use for Open e
 
 .. _openedx_extra_pip_requirements:
 
-- ``OPENEDX_EXTRA_PIP_REQUIREMENTS`` (default: ``openedx-scorm-xblock>=15.0.0,<16.0.0``)
+- ``OPENEDX_EXTRA_PIP_REQUIREMENTS`` (default: ``["openedx-scorm-xblock>=15.0.0,<16.0.0"]``)
 
 This defines extra pip packages that are going to be installed for Open edX.
 
@@ -402,7 +402,7 @@ Note that your edx-platform version must be a fork of the latest release **tag**
 
 If you don't create your fork from this tag, you *will* have important compatibility issues with other services. In particular:
 
-- Do not try to run a fork from an older (pre-Nutmeg) version of edx-platform: this will simply not work.
+- Do not try to run a fork from an older (pre-Olive) version of edx-platform: this will simply not work.
 - Do not try to run a fork from the edx-platform master branch: there is a 99% probability that it will fail.
 - Do not try to run a fork from the open-release/olive.master branch: Tutor will attempt to apply security and bug fix patches that might already be included in the open-release/olive.master but which were not yet applied to the latest release tag. Patch application will thus fail if you base your fork from the open-release/olive.master branch.
 
