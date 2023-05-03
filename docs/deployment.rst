@@ -8,4 +8,3 @@ Deploying Tutor
 
    local
    k8s
-   dev

@@ -1,6 +1,6 @@
-=============
-Legacy Documentation
-=============
+====================
+Legacy documentation
+====================
 
 .. toctree::
    :maxdepth: 2

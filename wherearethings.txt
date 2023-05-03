@@ -1,0 +1,9 @@
+https://docs.tutor.overhang.io/intro.html#how-does-tutor-work -> https://brian-smith-tcril.github.io/tutor/howtutorworks.html
+https://docs.tutor.overhang.io/faq.html#what-is-tutor -> https://brian-smith-tcril.github.io/tutor/concepts/tutor.html#what-is-tutor
+https://docs.tutor.overhang.io/faq.html#what-is-the-purpose-of-tutor -> https://brian-smith-tcril.github.io/tutor/concepts/tutor.html#what-is-the-purpose-of-tutor
+https://docs.tutor.overhang.io/faq.html#what-s-the-difference-with-the-official-native-installation -> https://brian-smith-tcril.github.io/tutor/faq.html#what-s-the-difference-with-the-official-native-installation
+https://docs.tutor.overhang.io/faq.html#what-s-the-difference-with-the-official-devstack -> https://brian-smith-tcril.github.io/tutor/faq.html#what-s-the-difference-with-the-official-devstack
+https://docs.tutor.overhang.io/faq.html#is-tutor-officially-supported-by-edx -> https://brian-smith-tcril.github.io/tutor/faq.html#is-tutor-officially-supported-by-edx
+https://docs.tutor.overhang.io/faq.html#what-features-are-missing-from-tutor -> https://brian-smith-tcril.github.io/tutor/faq.html#what-features-are-missing-from-tutor
+https://docs.tutor.overhang.io/faq.html#are-there-people-already-running-this-in-production -> https://brian-smith-tcril.github.io/tutor/faq.html#are-there-people-already-running-this-in-production
+https://docs.tutor.overhang.io/faq.html#why-should-i-trust-software-written-by-some-random-guy-on-the-internet -> https://brian-smith-tcril.github.io/tutor/faq.html#why-should-i-trust-software-written-by-some-random-guy-on-the-internet
