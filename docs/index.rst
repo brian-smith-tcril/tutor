@@ -29,6 +29,7 @@
    configuration
    plugins/index
    analytics
+   cli
    tutorials/index
    troubleshooting
 
