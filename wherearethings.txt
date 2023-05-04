@@ -1,5 +1,12 @@
+
+https://docs.tutor.overhang.io/dev.html -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html
+https://docs.tutor.overhang.io/dev.html#first-time-setup -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#first-time-setup
+https://docs.tutor.overhang.io/dev.html#stopping-the-platform -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#stopping-the-platform
+https://docs.tutor.overhang.io/dev.html#starting-the-platform-back-up -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#starting-the-platform-back-up
+https://docs.tutor.overhang.io/dev.html#debugging-with-breakpoints -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#debugging-with-breakpoints
+https://docs.tutor.overhang.io/dev.html#running-arbitrary-commands -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#running-arbitrary-commands
+https://docs.tutor.overhang.io/dev.html#rebuilding-the-openedx-dev-image -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#rebuilding-the-openedx-dev-image
 https://docs.tutor.overhang.io/dev.html#sharing-directories-with-containers -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#sharing-directories-with-containers
-https://docs.tutor.overhang.io/dev.html#common-tasks -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#common-tasks
 https://docs.tutor.overhang.io/dev.html#xblock-and-edx-platform-plugin-development -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#xblock-and-edx-platform-plugin-development
 https://docs.tutor.overhang.io/dev.html#running-edx-platform-unit-tests -> https://brian-smith-tcril.github.io/tutor/developing/openedx.html#running-edx-platform-unit-tests
 https://docs.tutor.overhang.io/tutorials/theming.html#developing-a-new-theme -> https://brian-smith-tcril.github.io/tutor/developing/themes.html

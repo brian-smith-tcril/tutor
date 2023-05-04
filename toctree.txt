@@ -1,0 +1,498 @@
+* Tutor: the Docker-based Open edX distribution designed for peace of
+  mind
+  * Features
+  * User testimonials
+    * Tutor
+      * What is Tutor?
+      * What is the purpose of Tutor?
+    * Open edX
+      * What is Open edX?
+      * Should I use Open edX?
+    * Getting started
+      * What next?
+        * Making Open edX look better
+        * Adding features
+        * Deploying to Kubernetes
+        * Gathering insights and analytics about Open edX
+        * Meeting the community
+    * Installing Tutor
+      * Requirements
+      * Quickstart (1-click install)
+      * Download
+        * Python package
+        * Binary release
+        * Installing from source
+      * Configuring DNS records
+      * Zero-click AWS installation
+      * Upgrading
+        * Upgrading with custom Docker images
+        * Upgrading to a new Open edX release
+      * Shell autocompletion
+      * Uninstallation
+    * Deploying Tutor
+      * Local deployment
+        * Main commands
+          * All-in-one command
+          * Configuration
+          * Update docker images
+          * Running Open edX
+          * Service initialisation
+          * Logging
+          * Status
+        * Common tasks
+          * Creating a new user with staff and admin rights
+          * Importing the demo course
+          * Setting a new theme
+          * Running arbitrary "manage.py" commands
+          * Reloading Open edX settings
+          * Customizing the deployed services
+      * Kubernetes deployment
+        * Requirements
+          * Version
+          * Memory
+          * Load Balancer and SSL/TLS certificates
+          * S3-like object storage with MinIO
+          * Kubernetes dashboard
+        * Technical details
+        * Quickstart
+        * Other commands
+        * Common tasks
+          * Executing commands inside service pods
+          * Running a custom "openedx" Docker image
+          * Updating docker images
+          * Customizing Kubernetes resources
+    * Running Open edX
+      * Logging-in as administrator
+      * Importing a demo course
+    * Configuration and customisation
+      * Configuration
+        * Individual service activation
+        * Docker
+          * Custom images
+          * Custom registry
+          * Compose
+        * Open edX customisation
+        * CMS OAUTH2 SSO
+        * JWTs
+        * Vendor services
+          * Caddy
+          * MySQL
+          * Elasticsearch
+          * MongoDB
+          * Redis
+          * SMTP
+        * SSL/TLS certificates for HTTPS access
+        * Kubernetes
+        * Miscellaneous Project Settings
+      * Custom Open edX docker image
+        * openedx Docker Image build arguments
+        * Adding custom themes
+        * Installing extra xblocks and requirements
+          * Installing extra requirements from private repositories
+        * Running a fork of "edx-platform"
+        * Adding custom translations
+        * Running a different "openedx" Docker image
+        * Passing custom docker build options
+    * Plugins
+      * Plugin commands cheatsheet
+      * Existing plugins
+    * Tutorials
+      * Open edX customization
+        * Changing the appearance of Open edX
+          * Installing a custom theme
+        * Modifying "edx-platform" settings
+        * Using Google Mail as an SMTP server
+        * Running Open edX on the master branch ("nightly")
+          * Installing Tutor Nightly
+          * Upgrading to the latest version of Open edX
+          * Running Tutor Nightly alongside the latest release
+          * Making changes to Tutor Nightly
+      * System administration
+        * Running Open edX at scale
+          * Scaling with a single server
+            * Increasing web server capacity
+            * Offloading data storage
+          * Scaling with multiple servers
+            * Horizontally scaling web services
+            * Highly-available architecture, autoscaling, ...
+        * Running a Docker container web UI with Portainer
+        * Running Tutor with Podman
+          * Enabling Podman
+          * Getting docker-compose to work with Podman
+          * Fixing SELinux Errors
+          * Verifying your environment
+        * Running Open edX behind a web proxy
+        * Making backups and migrating data
+        * Making database dumps
+        * Running multiple Open edX platforms on a single server
+        * Upgrading from older releases
+          * Upgrading from v3+
+          * Upgrading from v1 or v2
+        * Running Tutor on ARM-based systems
+          * Building the images
+          * Change the database server
+          * Finish setup and start Tutor
+    * Troubleshooting
+      * Logging
+      * "Cannot start service caddy: driver failed programming
+        external connectivity"
+      * "Couldn't connect to docker daemon"
+      * "Running migrations... Killed!" / "Command failed with status
+        137: docker-compose"
+      * "Can't connect to MySQL server on 'mysql:3306' (111)"
+      * Help! The Docker containers are eating all my RAM/CPU/CHEESE
+      * "Build failed running pavelib.servers.lms: Subprocess return
+        code: 1"
+      * The chosen default language does not display properly
+      * When I make changes to a course in the CMS, they are not taken
+        into account by the LMS
+    * Tutor development
+      * Setting up your development environment
+        * Install requirements
+        * Run tests
+        * Code formatting
+      * Common developer tasks
+        * Generating the "tutor" executable binary
+        * Generating the documentation
+        * Releasing a new version
+      * Versioning
+      * Contributing to Tutor
+      * Joining the team of Tutor Maintainers
+    * Tutor plugin development
+      * Creating a Tutor plugin
+        * Writing a plugin as a single Python module
+          * Getting started
+          * Modifying existing files with patches
+          * Modifying configuration
+          * Adding new templates
+          * Declaring initialisation tasks
+          * Tailoring services for development
+          * Final result
+            * "myplugin.py"
+            * "templates/myplugin/build/myservice/Dockerfile"
+            * "templates/myplugin/tasks/init.sh"
+        * Distributing a plugin as a Python package
+      * Examples
+        * Skip email validation for new users
+        * Enable bulk enrollment view in the LMS
+        * Enable Google Analytics
+        * Enable SAML authentication
+      * Plugin indexes
+        * Index file paths
+        * Plugin entry syntax
+          * "name" (required)
+          * "src" (required)
+          * "url" (optional)
+          * "author" (optional)
+          * "maintainer" (optional)
+          * "description" (optional)
+        * Examples
+          * Manage plugins in development
+          * Install plugins from a private index
+    * Open edX development
+      * First-time setup
+      * Stopping the platform
+      * Starting the platform back up
+      * Debugging with breakpoints
+      * Running arbitrary commands
+      * Rebuilding the openedx-dev image
+      * Sharing directories with containers
+        * Bind-mount volumes with "--mount"
+        * Copy files from containers to the local filesystem
+        * Manual bind-mount to any directory
+        * Override docker-compose volumes
+      * XBlock and edx-platform plugin development
+      * Running edx-platform unit tests
+    * Open edX theme development
+    * Legacy documentation
+      * Plugins Legacy v0 API
+        * Plugin API
+          * config
+          * patches
+          * hooks
+            * "init"
+            * "pre-init"
+            * "build-image"
+            * "remote-image"
+          * templates
+          * command
+        * Getting started with plugin development
+          * YAML file
+          * Python package
+    * Command line interface (CLI)
+      * tutor
+        * config
+          * patches
+            * list
+          * printroot
+          * printvalue
+          * save
+        * dev
+          * copyfrom
+          * dc
+          * exec
+          * launch
+          * logs
+          * reboot
+          * restart
+          * run
+          * start
+          * status
+          * stop
+        * help
+        * images
+          * build
+          * printtag
+          * pull
+          * push
+        * k8s
+          * apply
+          * delete
+          * exec
+          * init
+          * launch
+          * logs
+          * reboot
+          * scale
+          * start
+          * status
+          * stop
+          * upgrade
+          * wait
+        * local
+          * copyfrom
+          * dc
+          * exec
+          * launch
+          * logs
+          * reboot
+          * restart
+          * run
+          * start
+          * status
+          * stop
+          * upgrade
+        * plugins
+          * disable
+          * enable
+          * index
+            * add
+            * list
+            * remove
+          * install
+          * list
+          * printroot
+          * search
+          * show
+          * update
+          * upgrade
+      * tutor config
+        * patches
+          * list
+        * printroot
+        * printvalue
+        * save
+      * tutor dev
+        * copyfrom
+        * dc
+        * exec
+        * launch
+        * logs
+        * reboot
+        * restart
+        * run
+        * start
+        * status
+        * stop
+      * tutor images
+        * build
+        * printtag
+        * pull
+        * push
+      * tutor k8s
+        * apply
+        * delete
+        * exec
+        * init
+        * launch
+        * logs
+        * reboot
+        * scale
+        * start
+        * status
+        * stop
+        * upgrade
+        * wait
+      * tutor local
+        * copyfrom
+        * dc
+        * exec
+        * launch
+        * logs
+        * reboot
+        * restart
+        * run
+        * start
+        * status
+        * stop
+        * upgrade
+      * tutor plugins
+        * disable
+        * enable
+        * index
+          * add
+          * list
+          * remove
+        * install
+        * list
+        * printroot
+        * search
+        * show
+        * update
+        * upgrade
+    * Hooks
+      * Hooks catalog
+        * "Actions"
+          * "Actions.COMPOSE_PROJECT_STARTED"
+          * "Actions.CORE_READY"
+          * "Actions.DO_JOB"
+          * "Actions.PLUGINS_LOADED"
+          * "Actions.PLUGIN_LOADED"
+          * "Actions.PLUGIN_UNLOADED"
+          * "Actions.PROJECT_ROOT_READY"
+        * "Filters"
+          * "Filters.CLI_COMMANDS"
+          * "Filters.CLI_DO_COMMANDS"
+          * "Filters.CLI_DO_INIT_TASKS"
+          * "Filters.COMMANDS_INIT"
+          * "Filters.COMMANDS_PRE_INIT"
+          * "Filters.COMPOSE_DEV_JOBS_TMP"
+          * "Filters.COMPOSE_DEV_TMP"
+          * "Filters.COMPOSE_LOCAL_JOBS_TMP"
+          * "Filters.COMPOSE_LOCAL_TMP"
+          * "Filters.COMPOSE_MOUNTS"
+          * "Filters.CONFIG_DEFAULTS"
+          * "Filters.CONFIG_OVERRIDES"
+          * "Filters.CONFIG_UNIQUE"
+          * "Filters.DOCKER_BUILD_COMMAND"
+          * "Filters.ENV_PATCH"
+          * "Filters.ENV_PATCHES"
+          * "Filters.ENV_PATTERNS_IGNORE"
+          * "Filters.ENV_PATTERNS_INCLUDE"
+          * "Filters.ENV_TEMPLATE_FILTERS"
+          * "Filters.ENV_TEMPLATE_ROOTS"
+          * "Filters.ENV_TEMPLATE_TARGETS"
+          * "Filters.ENV_TEMPLATE_VARIABLES"
+          * "Filters.IMAGES_BUILD"
+          * "Filters.IMAGES_PULL"
+          * "Filters.IMAGES_PUSH"
+          * "Filters.PLUGINS_INFO"
+          * "Filters.PLUGINS_INSTALLED"
+          * "Filters.PLUGINS_LOADED"
+          * "Filters.PLUGIN_INDEXES"
+          * "Filters.PLUGIN_INDEX_ENTRY_TO_INSTALL"
+          * "Filters.PLUGIN_INDEX_URL"
+        * "Contexts"
+          * "Contexts.APP"
+          * "Contexts.PLUGINS"
+          * "Contexts.PLUGINS_V0_ENTRYPOINT"
+          * "Contexts.PLUGINS_V0_YAML"
+      * Actions
+        * "Action"
+          * "Action.add()"
+          * "Action.clear()"
+          * "Action.do()"
+          * "Action.do_from_context()"
+          * "Action.get()"
+        * "ActionTemplate"
+        * "tutor.core.hooks.actions.T"
+        * "tutor.types.Config"
+      * Filters
+        * "Filter"
+          * "Filter.add()"
+          * "Filter.add_item()"
+          * "Filter.add_items()"
+          * "Filter.apply()"
+          * "Filter.apply_from_context()"
+          * "Filter.clear()"
+          * "Filter.get()"
+          * "Filter.iterate()"
+          * "Filter.iterate_from_context()"
+        * "FilterTemplate"
+        * "tutor.core.hooks.filters.T1"
+        * "tutor.core.hooks.filters.T2"
+        * "tutor.core.hooks.filters.L"
+      * Contexts
+        * "Context"
+        * "enter()"
+    * Template patch catalog
+      * "caddyfile"
+      * "caddyfile-cms"
+      * "caddyfile-global"
+      * "caddyfile-lms"
+      * "cms-env"
+      * "cms-env-features"
+      * "common-env-features"
+      * "dev-docker-compose-jobs-services"
+      * "k8s-deployments"
+      * "k8s-jobs"
+      * "k8s-override"
+      * "k8s-services"
+      * "k8s-volumes"
+      * "kustomization"
+      * "kustomization-commonlabels"
+      * "kustomization-configmapgenerator"
+      * "kustomization-patches-strategic-merge"
+      * "kustomization-resources"
+      * "lms-env"
+      * "lms-env-features"
+      * "local-docker-compose-caddy-aliases"
+      * "local-docker-compose-cms-dependencies"
+      * "local-docker-compose-dev-services"
+      * "local-docker-compose-jobs-services"
+      * "local-docker-compose-lms-dependencies"
+      * "local-docker-compose-prod-services"
+      * "local-docker-compose-services"
+      * "openedx-auth"
+      * "openedx-cms-common-settings"
+      * "openedx-cms-development-settings"
+      * "openedx-cms-production-settings"
+      * "openedx-common-assets-settings"
+      * "openedx-common-i18n-settings"
+      * "openedx-common-settings"
+      * "openedx-dev-dockerfile-post-python-requirements"
+      * "openedx-development-settings"
+      * "openedx-dockerfile"
+      * "openedx-dockerfile-final"
+      * "openedx-dockerfile-git-patches-default"
+      * "openedx-dockerfile-minimal"
+      * "openedx-dockerfile-post-git-checkout"
+      * "openedx-dockerfile-post-python-requirements"
+      * "openedx-dockerfile-pre-assets"
+      * "openedx-lms-common-settings"
+      * "openedx-lms-development-settings"
+      * "openedx-lms-production-settings"
+      * "uwsgi-config"
+    * How Tutor works
+    * FAQ
+      * Should I self-host Open edX or rely on a hosting provider?
+      * Should I use Tutor?
+      * How does Tutor simplify Open edX deployment?
+      * Where can I try Open edX and Tutor?
+      * How do I navigate Tutor's command-line interface?
+      * I'm ready, where do I start?
+      * What's the difference with the official "native" installation?
+      * What's the difference with the official devstack?
+      * Is Tutor officially supported by edX?
+      * What features are missing from Tutor?
+      * Are there people already running this in production?
+      * Why should I trust software written by some random guy on the
+        Internet?
+    * Source code
+    * Community forums
+    * Pypi releases
+    * Changelog
+  * Source code
+  * Support
+  * Contributing
+  * License
