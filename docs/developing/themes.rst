@@ -1,7 +1,7 @@
 .. _theme_development:
 
 Open edX theme development 
-----------------------
+--------------------------
 
 With Tutor, it's pretty easy to develop your own themes. Start by placing your files inside the ``env/build/openedx/themes`` directory. For instance, you could start from the ``edx.org`` theme present inside the ``edx-platform`` repository::
 

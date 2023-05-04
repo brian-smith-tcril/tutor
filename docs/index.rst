@@ -12,10 +12,6 @@
 
 ----------------------------------
 
-.. include:: quickstart.rst
-    :start-line: 1
-
-
 .. toctree::
    :maxdepth: 1
    :caption: Concepts
@@ -27,13 +23,12 @@
    :maxdepth: 1
    :caption: User guide
 
-   gettingstarted
    install
    deployment
    run
    configuration
    plugins/index
-   reference/index
+   analytics
    tutorials/index
    troubleshooting
 
@@ -46,7 +41,6 @@
    developing/openedx
    developing/themes
    developing/legacy/index
-   reference/index
 
 .. toctree::
    :maxdepth: 1
