@@ -53,11 +53,6 @@ Urls:
 
 The platform is reset every day at 9:00 AM, `Paris (France) time <https://time.is/Paris>`__, so feel free to try and break things as much as you want.
 
-I'm ready, where do I start?
-----------------------------
-
-Right :ref:`here <gettingstarted>`!
-
 .. _native:
 
 What's the difference with the official "native" installation?
@@ -76,7 +71,7 @@ Many features that are not included in the native installation, such as a `web u
 What's the difference with the official devstack?
 -------------------------------------------------
 
-The `devstack <https://github.com/openedx/devstack>`_ is meant for development only, not for production deployment. Tutor can be used both for production deployment and :ref:`locally hacking on Open edX <development>`.
+The `devstack <https://github.com/openedx/devstack>`_ is meant for development only, not for production deployment. Tutor can be used both for production deployment and :ref:`locally hacking on Open edX <openedx_development>`.
 
 Is Tutor officially supported by edX?
 -------------------------------------
