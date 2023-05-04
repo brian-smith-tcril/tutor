@@ -1,13 +1,6 @@
 Command line interface (CLI)
 ============================
 
-.. toctree::
-   :maxdepth: 2
-
-   tutor
-   config
-   dev
-   images
-   k8s
-   local
-   plugins
+.. click:: tutor.commands.cli:cli
+   :prog: tutor
+   :nested: full
