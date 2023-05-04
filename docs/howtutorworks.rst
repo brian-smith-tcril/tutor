@@ -1,4 +1,4 @@
-.. _howtutorworks:
+.. _how_tutor_works:
 
 How Tutor works
 ===============
