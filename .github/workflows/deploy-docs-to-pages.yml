@@ -2,7 +2,7 @@ name: Deploy docs to pages
 
 on:
   push:
-    branches: [ "restructure-docs-2" ]
+    branches: [ "main2" ]
 
 jobs:
   # Build job
