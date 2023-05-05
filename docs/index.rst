@@ -37,6 +37,7 @@
    :maxdepth: 1
    :caption: Developer guide
 
+   developing/nightly
    tutor
    developing/plugins/index
    developing/openedx

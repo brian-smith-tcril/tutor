@@ -6,9 +6,9 @@ Configuration and customisation
 Tutor offers plenty of possibilities for platform customisation out of the box. There are two main ways in which the base Open edX installation can be customised:
 
 a. Modifying the Tutor :ref:`configuration parameters <configuration>`.
-b. Modifying the :ref:`Open edX docker image <customise>` that runs the Open edX platform.
+b. Modifying the :ref:`Open edX docker image <custom_openedx_docker_image>` that runs the Open edX platform.
 
-This section does not cover :ref:`plugin development <plugins>`. For simple changes, such as modifying the ``*.env.yml`` files or the edx-platform settings, *you should not fork edx-platform or tutor*! Instead, you should create a simple :ref:`plugin for Tutor <plugins_yaml>`.
+This section does not cover :ref:`plugin development <plugin_development>`. For simple changes, such as modifying the ``*.env.yml`` files or the edx-platform settings, *you should not fork edx-platform or tutor*! Instead, you should create a simple :ref:`plugin for Tutor <plugin_development_tutorial>`.
 
 .. _configuration:
 
@@ -293,8 +293,6 @@ If you would like to perform SSL/TLS termination with your own custom certificat
 
 .. _customise:
 
-.. _custom_openedx_docker_image:
-
 Kubernetes
 ~~~~~~~~~~
 
@@ -312,6 +310,8 @@ This configuration parameter sets the Contact Email.
 - ``PLATFORM_NAME`` (default: ``"My Open edX"``)
 
 This configuration parameter sets the Platform Name.
+
+.. _custom_openedx_docker_image:
 
 Custom Open edX docker image
 ----------------------------
@@ -497,3 +497,39 @@ In these situations, you can set ``--docker-arg`` flag in the ``tutor images bui
         --docker-arg="docker.io/myusername/openedx:mytag"
 
 This will result in passing the ``--cache-from`` option with the value ``docker.io/myusername/openedx:mytag`` to the docker build command.
+
+
+Modifying ``edx-platform`` settings
+-----------------------------------
+
+The default settings module loaded by ``edx-platform`` is ``tutor.production`` in production and ``tutor.development`` in development. The folders ``$(tutor config printroot)/env/apps/openedx/settings/lms`` and ``$(tutor config printroot)/env/apps/openedx/settings/cms`` are mounted as ``edx-platform/lms/envs/tutor`` and ``edx-platform/cms/envs/tutor`` inside the docker containers. To modify these settings you must create a plugin that implements one or more of the patch statements in those setting files. See the :ref:`plugin_development_tutorial` tutorial for more information on how to create a plugin.
+
+
+.. _theming:
+
+Installing a custom theme
+-------------------------
+
+Comprehensive theming is enabled by default, but only the default theme is compiled. `Indigo <https://github.com/overhangio/indigo>`__ is a better, ready-to-run theme that you can start using today.
+
+To compile your own theme, add it to the ``env/build/openedx/themes/`` folder::
+
+    git clone https://github.com/me/myopenedxtheme.git \
+      "$(tutor config printroot)/env/build/openedx/themes/myopenedxtheme"
+
+The ``themes`` folder should have the following structure::
+
+    openedx/themes/
+        mycustomtheme1/
+            cms/
+                ...
+            lms/
+                ...
+        mycustomtheme2/
+            ...
+
+Then you must rebuild the openedx Docker image::
+
+    tutor images build openedx
+
+Finally, you should enable your theme with the :ref:`settheme command <settheme>`.

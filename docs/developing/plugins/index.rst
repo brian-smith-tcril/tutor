@@ -1,3 +1,4 @@
+.. _plugin_development:
 
 ========================
 Tutor plugin development
