@@ -7,7 +7,6 @@ Open edX customization
 .. toctree::
    :maxdepth: 1
 
-   plugin
    theming
    edx-platform-settings
    google-smtp
