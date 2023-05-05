@@ -8,13 +8,6 @@
     * Open edX
       * What is Open edX?
       * Should I use Open edX?
-    * Getting started
-      * What next?
-        * Making Open edX look better
-        * Adding features
-        * Deploying to Kubernetes
-        * Gathering insights and analytics about Open edX
-        * Meeting the community
     * Installing Tutor
       * Requirements
       * Quickstart (1-click install)
@@ -93,45 +86,41 @@
         * Adding custom translations
         * Running a different "openedx" Docker image
         * Passing custom docker build options
+      * Modifying "edx-platform" settings
+      * Installing a custom theme
+      * Using Google Mail as an SMTP server
     * Plugins
       * Plugin commands cheatsheet
       * Existing plugins
-    * Tutorials
-      * Open edX customization
-        * Changing the appearance of Open edX
-          * Installing a custom theme
-        * Modifying "edx-platform" settings
-        * Using Google Mail as an SMTP server
-        * Running Open edX on the master branch ("nightly")
-          * Installing Tutor Nightly
-          * Upgrading to the latest version of Open edX
-          * Running Tutor Nightly alongside the latest release
-          * Making changes to Tutor Nightly
-      * System administration
-        * Running Open edX at scale
-          * Scaling with a single server
-            * Increasing web server capacity
-            * Offloading data storage
-          * Scaling with multiple servers
-            * Horizontally scaling web services
-            * Highly-available architecture, autoscaling, ...
-        * Running a Docker container web UI with Portainer
-        * Running Tutor with Podman
-          * Enabling Podman
-          * Getting docker-compose to work with Podman
-          * Fixing SELinux Errors
-          * Verifying your environment
-        * Running Open edX behind a web proxy
-        * Making backups and migrating data
-        * Making database dumps
-        * Running multiple Open edX platforms on a single server
-        * Upgrading from older releases
-          * Upgrading from v3+
-          * Upgrading from v1 or v2
-        * Running Tutor on ARM-based systems
-          * Building the images
-          * Change the database server
-          * Finish setup and start Tutor
+    * Analytics
+      * Gathering insights and analytics about Open edX
+    * System administration
+      * Running Open edX at scale
+        * Scaling with a single server
+          * Increasing web server capacity
+          * Offloading data storage
+        * Scaling with multiple servers
+          * Horizontally scaling web services
+          * Highly-available architecture, autoscaling, ...
+      * Running a Docker container web UI with Portainer
+      * Running Tutor with Podman
+        * Enabling Podman
+        * Getting docker-compose to work with Podman
+        * Fixing SELinux Errors
+        * Verifying your environment
+      * Running Open edX behind a web proxy
+      * Making backups and migrating data
+      * Making database dumps
+      * Running multiple Open edX platforms on a single server
+      * Upgrading from older releases
+        * Upgrading from v3+
+        * Upgrading from v1 or v2
+      * Running Tutor on ARM-based systems
+        * Building the images
+        * Change the database server
+        * Finish setup and start Tutor
+    * Command line interface (CLI)
+      * How do I navigate Tutor's command-line interface?
     * Troubleshooting
       * Logging
       * "Cannot start service caddy: driver failed programming
@@ -146,6 +135,11 @@
       * The chosen default language does not display properly
       * When I make changes to a course in the CMS, they are not taken
         into account by the LMS
+    * Running Open edX on the master branch ("nightly")
+      * Installing Tutor Nightly
+      * Upgrading to the latest version of Open edX
+      * Running Tutor Nightly alongside the latest release
+      * Making changes to Tutor Nightly
     * Tutor development
       * Setting up your development environment
         * Install requirements
@@ -415,8 +409,6 @@
       * Should I use Tutor?
       * How does Tutor simplify Open edX deployment?
       * Where can I try Open edX and Tutor?
-      * How do I navigate Tutor's command-line interface?
-      * I'm ready, where do I start?
       * What's the difference with the official "native" installation?
       * What's the difference with the official devstack?
       * Is Tutor officially supported by edX?
