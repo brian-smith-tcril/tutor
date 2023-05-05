@@ -31,7 +31,8 @@ After enabling or disabling a plugin, the environment should be re-generated wit
 
     tutor config save
 
-The full plugins CLI is described in the :ref:`reference documentation <cli_plugins>`.
+.. it'd be nice to use ref here instead, see https://github.com/click-contrib/sphinx-click/issues/15
+The full plugins CLI is described in the `reference documentation <../reference/cli/tutor.html#tutor-plugins>`_.
 
 .. _existing_plugins:
 
