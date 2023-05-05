@@ -29,8 +29,8 @@
    configuration
    plugins/index
    analytics
+   sysadmin/index
    cli
-   tutorials/index
    troubleshooting
 
 .. toctree::
